@@ -1,5 +1,7 @@
 # Enhanced Q&A Chatbot
 
+[🚀 Open the live app](https://qna-chatbot-7vntubqjwaghudwujpucnt.streamlit.app/)
+
 An interactive question-and-answer chatbot built with Streamlit, LangChain, and Groq. Users can select an AI model and adjust the temperature and maximum response length from the sidebar.
 
 ## Features
