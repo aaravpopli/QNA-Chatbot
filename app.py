@@ -16,6 +16,12 @@ st.set_page_config(
 )
 load_dotenv()
 
+# Community Cloud exposes credentials through st.secrets. Mirror them into
+# environment variables so local .env and deployed configuration use one path.
+for secret_name in ("GROQ_API_KEY", "LANGCHAIN_API_KEY"):
+    if not os.getenv(secret_name) and secret_name in st.secrets:
+        os.environ[secret_name] = str(st.secrets[secret_name])
+
 # LangSmith tracing is optional; the interface also works without its API key.
 if os.getenv("LANGCHAIN_API_KEY"):
     os.environ.setdefault("LANGCHAIN_TRACING_V2", "true")
@@ -191,4 +197,3 @@ if question and question.strip() and api_key_ready:
             {"role": "assistant", "content": error or response, "error": bool(error)}
         )
     st.rerun()
-
